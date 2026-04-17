@@ -39,6 +39,7 @@ pub fn run(root: &Path, out: &Path) -> Result<()> {
     fs::create_dir_all(&assets_dir)?;
     fs::write(assets_dir.join("bbs.css"), template::CSS)?;
     fs::write(assets_dir.join("bbs.js"), template::JS)?;
+    fs::write(out.join("favicon.ico"), template::FAVICON)?;
 
     let renderer = Renderer::default();
 

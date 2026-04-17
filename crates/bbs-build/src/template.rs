@@ -11,6 +11,7 @@ use crate::markdown::Renderer;
 
 pub const CSS: &str = include_str!("../templates/bbs.css");
 pub const JS: &str = include_str!("../templates/bbs.js");
+pub const FAVICON: &[u8] = include_bytes!("../templates/favicon.ico");
 
 /// Width of the menu box on the landing page (border to border, inclusive).
 const MENU_WIDTH: usize = 35;
@@ -581,6 +582,7 @@ fn wrap_html(meta: &PageMeta, body: &str) -> String {
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canonical}">
 <meta name="generator" content="bbs-build">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="/assets/bbs.css">
 </head>
 <body class="loading">{body}<script src="/assets/bbs.js"></script>
