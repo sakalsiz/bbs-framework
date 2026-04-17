@@ -79,7 +79,7 @@ pub fn render_page(
         r#"
 <div id="t" tabindex="0">{nav}
 
-{content}
+<span class="page-content">{content}</span>
 
 {footer}</div>
 <div id="quit-screen" data-messages='{quit_json}'></div>
@@ -243,7 +243,7 @@ pub fn render_blog_post(
         r#"
 <div id="t" tabindex="0">{header}
 
-{content}
+<span class="page-content">{content}</span>
 
 {footer}</div>
 <div id="quit-screen" data-messages='{quit_json}'></div>

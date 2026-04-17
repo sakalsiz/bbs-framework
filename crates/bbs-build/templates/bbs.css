@@ -31,7 +31,7 @@ html, body {
   background: #000;
   color: var(--lgray);
   font-family: 'PxPlus', monospace;
-  font-size: 16px;
+  font-size: 20px;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -61,7 +61,7 @@ body::before {
 
 #intro, #t, #quit-screen {
   white-space: pre;
-  font: 16px/1.2 'PxPlus', monospace;
+  font: 20px/1.2 'PxPlus', monospace;
   padding: 8px;
   max-width: 82ch;
   margin: 0 auto;
@@ -116,7 +116,7 @@ body::before {
   bottom: 0; left: 0; width: 100%;
   background: var(--cyan);
   color: #000;
-  font: 16px 'PxPlus', monospace;
+  font: 20px 'PxPlus', monospace;
   text-align: center;
   padding: 2px 0;
   white-space: pre;
@@ -128,8 +128,23 @@ a:hover { color: var(--yellow); background: var(--blue); }
 a.ml { display: inline; }
 ::selection { background: var(--lblue); color: var(--white); }
 
+/* Mobile: scale the font so the widest element (80-char banner + 2ch padding)
+   fits the viewport. PxPlus has a 1:2 height:width ratio (8px wide at 16px
+   font-size), so font-size = (viewport - padding) / 41 fits 82 chars exactly.
+   Minimum 8px to stay readable on very small screens. */
 @media (max-width: 700px) {
-  #intro, #t, #quit-screen, .sb { font-size: 10px; }
-  #t, #intro, #quit-screen { padding: 4px; }
+  #intro, #t, #quit-screen, .sb {
+    font-size: max(8px, calc((100vw - 16px) / 41));
+  }
+  #t, #intro, #quit-screen { padding: 4px 8px; }
   #t { padding-bottom: 24px; }
+
+  /* Content text (blog posts, pages) wraps on mobile so paragraphs don't
+     require horizontal scrolling. The banner, menu box, and code blocks
+     stay white-space:pre from the parent — only .page-content overrides. */
+  .page-content {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
 }
