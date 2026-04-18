@@ -39,6 +39,14 @@ pub fn run(root: &Path, out: &Path) -> Result<()> {
     fs::create_dir_all(&assets_dir)?;
     fs::write(assets_dir.join("bbs.css"), template::CSS)?;
     fs::write(assets_dir.join("bbs.js"), template::JS)?;
+
+    // CNAME file for GitHub Pages custom domain.
+    if let Some(ref base_url) = config.site.base_url {
+        let domain = base_url.trim_start_matches("https://").trim_start_matches("http://").trim_end_matches('/');
+        if !domain.is_empty() {
+            fs::write(out.join("CNAME"), domain)?;
+        }
+    }
     fs::write(out.join("favicon.ico"), template::FAVICON)?;
 
     let renderer = Renderer::default();

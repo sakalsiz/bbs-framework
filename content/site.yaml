@@ -10,6 +10,7 @@ site:
   baud: 14400
   nodes: 1
   theme: default
+  base_url: "https://sakalsiz.com"
 
 # Modem/terminal settings shown in the Terminate intro
 terminal:
